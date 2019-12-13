@@ -2,27 +2,40 @@ package com.jpitkonen.tsirbulawatch;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddBirdActivity extends Activity implements AdapterView.OnItemSelectedListener {
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+
+public class AddBirdActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public static final String EXTRA_REPLY = "com.jpitkonen.tsirbulawatch.birdlistsql.REPLY";
+    public static final String EXTRA_REPLY_NOTES = "com.jpitkonen.tsirbulawatch.birdlistsql.REPLY_NOTES";
+    public static final String EXTRA_REPLY_TIME = "com.jpitkonen.tsirbulawatch.birdlistsql.REPLY_TIME";
+    public static final String EXTRA_REPLY_RARITY = "com.jpitkonen.tsirbulawatch.birdlistsql.REPLY_RARITY";
+    public static final int GALLERY_REQUEST_CODE = 192;
 
     private TextView birdAddText;
-    private EditText bird_name, bird_notes;
+    private EditText bird_name, bird_notes, time_stamp;
     private Spinner spinner;
-    private Button button;
+    private Button button, uploadButton;
+    private ImageView imageView;
 
 
     @Override
@@ -33,8 +46,11 @@ public class AddBirdActivity extends Activity implements AdapterView.OnItemSelec
         birdAddText = (TextView) findViewById(R.id.birdAddText);
         bird_name = (EditText) findViewById(R.id.new_bird_name_text);
         bird_notes = (EditText) findViewById(R.id.new_notes_text);
+        time_stamp = (EditText) findViewById(R.id.timestampText);
         spinner = (Spinner) findViewById(R.id.spinner);
         button = (Button) findViewById(R.id.saveButtonId);
+        uploadButton = (Button) findViewById(R.id.uploadButton);
+        imageView = (ImageView) findViewById(R.id.imageViewId);
 
         String[] rarity_list = getResources().getStringArray(R.array.rarity_array);
 
@@ -51,20 +67,55 @@ public class AddBirdActivity extends Activity implements AdapterView.OnItemSelec
                 if (TextUtils.isEmpty(bird_name.getText())) {
                     setResult(RESULT_CANCELED, intent);
                 } else {
-                    String bird = bird_name.getText().toString();
-                    intent.putExtra(EXTRA_REPLY, bird);
+                    String birdName = bird_name.getText().toString();
+                    String birdNotes = bird_notes.getText().toString();
+                    String timeStamp = time_stamp.getText().toString();
+                    String spinnerRarity = spinner.getSelectedItem().toString();
+
+                    intent.putExtra(EXTRA_REPLY, birdName);
+                    intent.putExtra(EXTRA_REPLY_RARITY, spinnerRarity);
+                    intent.putExtra(EXTRA_REPLY_NOTES, birdNotes);
+                    intent.putExtra(EXTRA_REPLY_TIME, timeStamp);
+
                     setResult(RESULT_OK, intent);
                 }
                 finish();
             }
         });
 
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                String[] mimeTypes = {"image/jped", "image/png"};
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivityForResult(intent, GALLERY_REQUEST_CODE);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case GALLERY_REQUEST_CODE:
+                    Uri selectedImage = data.getData();
+                    imageView.setImageURI(selectedImage);
+                    break;
+            }
+        }
+
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
         String item = adapterView.getItemAtPosition(pos).toString();
-        Toast.makeText(adapterView.getContext(), "Selected bird: " + item, Toast.LENGTH_LONG).show();
     }
 
     @Override

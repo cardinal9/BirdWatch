@@ -6,6 +6,8 @@
     <string name="timestamp">Timestamp:</string>
     <string name="new_bird_head">Add new bird</string>
     <string name="not_saved">Bird was not saved!</string>
+    <string name="save_bird">SAVE</string>
+    <string name="upload_image">UPLOAD IMAGE</string>
 
     <string-array name="rarity_array">
         <item>Common</item>

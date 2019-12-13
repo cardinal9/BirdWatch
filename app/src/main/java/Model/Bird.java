@@ -16,11 +16,14 @@ public class Bird {
     public String bRarity;
     @ColumnInfo(name = "notes")
     public String bNotes;
+    @ColumnInfo(name = "timestamp")
+    public String bTimeStamp;
 
-    public Bird(String bName, String bRarity, String bNotes) {
+    public Bird(String bName, String bRarity, String bNotes, String bTimeStamp) {
         this.bName = bName;
         this.bRarity = bRarity;
         this.bNotes = bNotes;
+        this.bTimeStamp = bTimeStamp;
     }
 
     public String getbName() {
@@ -45,5 +48,13 @@ public class Bird {
 
     public void setbNotes(String bNotes) {
         this.bNotes = bNotes;
+    }
+
+    public String getbTimeStamp() {
+        return bTimeStamp;
+    }
+
+    public void setbTimeStamp(String bTimeStamp) {
+        this.bTimeStamp = bTimeStamp;
     }
 }

@@ -21,6 +21,7 @@ public class BirdListAdapter extends RecyclerView.Adapter<BirdListAdapter.BirdVi
         private final TextView birdItemView;
         private final TextView birdRareView;
         private final TextView birdNotesView;
+        private final TextView birdTimeStampView;
 
         private BirdViewHolder(View view) {
             super(view);
@@ -28,7 +29,7 @@ public class BirdListAdapter extends RecyclerView.Adapter<BirdListAdapter.BirdVi
             birdItemView = view.findViewById(R.id.birdNameId);
             birdRareView = view.findViewById(R.id.rarityId);
             birdNotesView = view.findViewById(R.id.notesId);
-
+            birdTimeStampView = view.findViewById(R.id.timestampId);
 
         }
     }
@@ -54,6 +55,7 @@ public class BirdListAdapter extends RecyclerView.Adapter<BirdListAdapter.BirdVi
             holder.birdItemView.setText(currentBird.getbName());
             holder.birdRareView.setText(currentBird.getbRarity());
             holder.birdNotesView.setText(currentBird.getbNotes());
+            holder.birdTimeStampView.setText(currentBird.getbTimeStamp());
         } else {
             holder.birdItemView.setText("No bird found!");
         }

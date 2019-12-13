@@ -61,7 +61,11 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_BIRD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Bird bird = new Bird(data.getStringExtra(AddBirdActivity.EXTRA_REPLY), data.getStringExtra(AddBirdActivity.EXTRA_REPLY), data.getStringExtra(AddBirdActivity.EXTRA_REPLY));
+
+            Bird bird = new Bird(data.getStringExtra(AddBirdActivity.EXTRA_REPLY),
+                    data.getStringExtra(AddBirdActivity.EXTRA_REPLY_RARITY),
+                    data.getStringExtra(AddBirdActivity.EXTRA_REPLY_NOTES),
+                    data.getStringExtra(AddBirdActivity.EXTRA_REPLY_TIME));
             birdViewModel.insert(bird);
         } else {
             Toast.makeText(getApplicationContext(), R.string.not_saved, Toast.LENGTH_SHORT).show();

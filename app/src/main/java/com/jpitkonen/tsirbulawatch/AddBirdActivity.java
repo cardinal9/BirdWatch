@@ -51,8 +51,10 @@ public class AddBirdActivity extends Activity implements AdapterView.OnItemSelec
                 if (TextUtils.isEmpty(bird_name.getText())) {
                     setResult(RESULT_CANCELED, intent);
                 } else {
-                    String bird = bird_name.getText().toString();
-                    intent.putExtra(EXTRA_REPLY, bird);
+                    String birdName = bird_name.getText().toString();
+                    String birdNotes = bird_notes.getText().toString();
+                    intent.putExtra(EXTRA_REPLY, birdName);
+                    intent.putExtra(EXTRA_REPLY, birdNotes);
                     setResult(RESULT_OK, intent);
                 }
                 finish();

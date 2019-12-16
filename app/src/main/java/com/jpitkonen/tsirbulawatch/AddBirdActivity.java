@@ -3,6 +3,7 @@ package com.jpitkonen.tsirbulawatch;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 
 public class AddBirdActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -117,6 +120,7 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
 
         if (resultCode == RESULT_OK) {
             if (requestCode == GALLERY_REQUEST_CODE) {
+
                 Picasso.get()
                         .load(data.getData())
                         .noPlaceholder()

@@ -8,6 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/cardview_compat_inset_shadow"
+        android:elevation="3dp"
+        android:padding="@dimen/cardview_default_radius"
         style="@style/CardView">
 
     <LinearLayout

@@ -19,6 +19,6 @@ public interface BirdDao {
     @Query("DELETE FROM bird_table")
     void deleteAll();
 
-    @Query("SELECT * FROM bird_table ORDER BY timestamp ASC")
+    @Query("SELECT * FROM bird_table ORDER BY timestamp DESC")
     LiveData<List<Bird>> getBirds();
 }

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
                     data.getStringExtra(AddBirdActivity.EXTRA_REPLY_NOTES),
                     data.getStringExtra(AddBirdActivity.EXTRA_REPLY_TIME));
             birdViewModel.insert(bird);
+
+            Snackbar.make(findViewById(R.id.recyclerViewId), R.string.bird_saved, Snackbar.LENGTH_SHORT).show();
+
         } else {
             Toast.makeText(getApplicationContext(), R.string.not_saved, Toast.LENGTH_SHORT).show();
         }

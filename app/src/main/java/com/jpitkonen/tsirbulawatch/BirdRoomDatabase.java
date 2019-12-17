@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
@@ -55,11 +56,11 @@ public abstract class BirdRoomDatabase extends RoomDatabase {
                 BirdDao birdDao = INSTANCE.birdDao();
                 //birdDao.deleteAll();
 
-                Bird bird = new Bird("Red Robin", "Rare", "Found one!", "13.12.2019");
+               /* Bird bird = new Bird("Red Robin", "Rare", "Found one!", "13.12.2019", "");
                 birdDao.insert(bird);
 
-                bird = new Bird("Punatulkku", "Common", "Found another..", "11.9.2019");
-                birdDao.insert(bird);
+                bird = new Bird("Punatulkku", "Common", "Found another..", "11.9.2019", "");
+                birdDao.insert(bird);*/
             });
         }
     };

@@ -1,10 +1,16 @@
 package com.jpitkonen.tsirbulawatch;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,11 +20,16 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.TypeConverters;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class AddBirdActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -27,12 +38,12 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
     public static final String EXTRA_REPLY_NOTES = "com.jpitkonen.tsirbulawatch.birdlistsql.REPLY_NOTES";
     public static final String EXTRA_REPLY_TIME = "com.jpitkonen.tsirbulawatch.birdlistsql.REPLY_TIME";
     public static final String EXTRA_REPLY_RARITY = "com.jpitkonen.tsirbulawatch.birdlistsql.REPLY_RARITY";
-    public static final int GALLERY_REQUEST_CODE = 192;
+    public static final int GALLERY_REQUEST_CODE = 111;
 
-    private TextView birdAddText;
-    private EditText bird_name, bird_notes, time_stamp;
+    private TextView birdAddText, time_stamp;
+    private EditText bird_name, bird_notes;
     private Spinner spinner;
-    private Button button, uploadButton;
+    private Button saveButton, uploadButton;
     private ImageView imageView;
 
 
@@ -44,9 +55,9 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
         birdAddText = (TextView) findViewById(R.id.birdAddText);
         bird_name = (EditText) findViewById(R.id.new_bird_name_text);
         bird_notes = (EditText) findViewById(R.id.new_notes_text);
-        time_stamp = (EditText) findViewById(R.id.timestampText);
+        time_stamp = (TextView) findViewById(R.id.timeStampId);
         spinner = (Spinner) findViewById(R.id.spinner);
-        button = (Button) findViewById(R.id.saveButtonId);
+        saveButton = (Button) findViewById(R.id.saveButtonId);
         uploadButton = (Button) findViewById(R.id.uploadButton);
         imageView = (ImageView) findViewById(R.id.imageViewId);
 
@@ -58,7 +69,7 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -68,17 +79,19 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
                     String birdName = bird_name.getText().toString();
                     String birdNotes = bird_notes.getText().toString();
 
-                    intent.putExtra(EXTRA_REPLY, birdName);
-                    intent.putExtra(EXTRA_REPLY, birdNotes);
-                    String timeStamp = time_stamp.getText().toString();
                     String spinnerRarity = spinner.getSelectedItem().toString();
+
+                    Date date = new Date();
+                    DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
+                    String formattedDate = formatDate.format(date);
+
+                    time_stamp.setText(formattedDate);
+
 
                     intent.putExtra(EXTRA_REPLY, birdName);
                     intent.putExtra(EXTRA_REPLY_RARITY, spinnerRarity);
                     intent.putExtra(EXTRA_REPLY_NOTES, birdNotes);
-                    intent.putExtra(EXTRA_REPLY_TIME, timeStamp);
-
-
+                    intent.putExtra(EXTRA_REPLY_TIME, formattedDate);
                     setResult(RESULT_OK, intent);
                 }
                 finish();
@@ -92,20 +105,9 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
             }
         });
 
-       /* uploadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                String[] mimeTypes = {"image/jped", "image/png"};
-                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivityForResult(intent, GALLERY_REQUEST_CODE);
-            }
-        }); */
-
     }
+
+
 
     public void chooseImg() {
         Intent intent = new Intent();
@@ -121,15 +123,15 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
         if (resultCode == RESULT_OK) {
             if (requestCode == GALLERY_REQUEST_CODE) {
 
+                Uri selectedImageUri = data.getData();
+
                 Picasso.get()
-                        .load(data.getData())
+                        .load(selectedImageUri)
                         .noPlaceholder()
                         .centerCrop()
                         .fit()
                         .into(imageView);
 
-                Uri selectedImageUri = data.getData();
-                selectedImageUri.toString();
             }
         }
 

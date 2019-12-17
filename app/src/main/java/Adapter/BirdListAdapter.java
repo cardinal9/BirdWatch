@@ -1,18 +1,18 @@
 package Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jpitkonen.tsirbulawatch.R;
-import com.squareup.picasso.Picasso;
 
-import java.io.File;
 import java.util.List;
 
 import Model.Bird;
@@ -31,7 +31,7 @@ public class BirdListAdapter extends RecyclerView.Adapter<BirdListAdapter.BirdVi
             birdItemView = view.findViewById(R.id.birdNameId);
             birdRareView = view.findViewById(R.id.rarityId);
             birdNotesView = view.findViewById(R.id.notesId);
-            birdTimeStampView = view.findViewById(R.id.timestampId);
+            birdTimeStampView = view.findViewById(R.id.timestamptextId);
 
         }
     }

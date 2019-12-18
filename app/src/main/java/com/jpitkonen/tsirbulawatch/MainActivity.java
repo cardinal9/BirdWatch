@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -66,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
             Bird bird = new Bird(data.getStringExtra(AddBirdActivity.EXTRA_REPLY),
                     data.getStringExtra(AddBirdActivity.EXTRA_REPLY_RARITY),
                     data.getStringExtra(AddBirdActivity.EXTRA_REPLY_NOTES),
-                    data.getStringExtra(AddBirdActivity.EXTRA_REPLY_TIME));
+                    data.getStringExtra(AddBirdActivity.EXTRA_REPLY_TIME),
+                    data.getStringExtra(AddBirdActivity.EXTRA_REPLY_IMAGE));
             birdViewModel.insert(bird);
 
             Snackbar.make(findViewById(R.id.recyclerViewId), R.string.bird_saved, Snackbar.LENGTH_SHORT).show();

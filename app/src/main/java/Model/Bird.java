@@ -18,12 +18,15 @@ public class Bird {
     public String bNotes;
     @ColumnInfo(name = "timestamp")
     public String bTimeStamp;
+    @ColumnInfo(name = "image")
+    public String birdImage;
 
-    public Bird(String bName, String bRarity, String bNotes, String bTimeStamp) {
+    public Bird(String bName, String bRarity, String bNotes, String bTimeStamp, String birdImage) {
         this.bName = bName;
         this.bRarity = bRarity;
         this.bNotes = bNotes;
         this.bTimeStamp = bTimeStamp;
+        this.birdImage = birdImage;
     }
 
     public String getbName() {
@@ -58,4 +61,11 @@ public class Bird {
         this.bTimeStamp = bTimeStamp;
     }
 
+    public String getBirdImage() {
+        return birdImage;
+    }
+
+    public void setBirdImage(String birdImage) {
+        this.birdImage = birdImage;
+    }
 }

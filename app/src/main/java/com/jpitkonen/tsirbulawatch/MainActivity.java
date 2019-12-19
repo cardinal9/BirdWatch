@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         birdViewModel = new ViewModelProvider(this).get(BirdViewModel.class);
 
+        //Populate list with birds
         birdViewModel.getAllBirds().observe(this, new Observer<List<Bird>>() {
             @Override
             public void onChanged(@Nullable final List<Bird> birds) {
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
 
+        //Button for creating a new bird
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*
+    Create new bird from data passed through form filled by user in AddBirdActivity
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -66,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
             Bird bird = new Bird(data.getStringExtra(AddBirdActivity.EXTRA_REPLY),
                     data.getStringExtra(AddBirdActivity.EXTRA_REPLY_RARITY),
                     data.getStringExtra(AddBirdActivity.EXTRA_REPLY_NOTES),
-                    data.getStringExtra(AddBirdActivity.EXTRA_REPLY_TIME));
+                    data.getStringExtra(AddBirdActivity.EXTRA_REPLY_TIME),
+                    data.getStringExtra(AddBirdActivity.EXTRA_REPLY_IMAGE));
             birdViewModel.insert(bird);
 
             Snackbar.make(findViewById(R.id.recyclerViewId), R.string.bird_saved, Snackbar.LENGTH_SHORT).show();

@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
@@ -18,7 +17,9 @@ import Model.Bird;
 
 @Database(entities = {Bird.class}, version = 2, exportSchema = false)
 public abstract class BirdRoomDatabase extends RoomDatabase {
-
+/*
+Database setup and migration...not working correctly.
+ */
     public abstract BirdDao birdDao();
 
     private static volatile BirdRoomDatabase INSTANCE;
@@ -54,13 +55,6 @@ public abstract class BirdRoomDatabase extends RoomDatabase {
 
             databaseWriteExecutor.execute(() -> {
                 BirdDao birdDao = INSTANCE.birdDao();
-                //birdDao.deleteAll();
-
-               /* Bird bird = new Bird("Red Robin", "Rare", "Found one!", "13.12.2019", "");
-                birdDao.insert(bird);
-
-                bird = new Bird("Punatulkku", "Common", "Found another..", "11.9.2019", "");
-                birdDao.insert(bird);*/
             });
         }
     };

@@ -63,28 +63,28 @@ Dependencies required - add these lines to your build:gradle(Module: app) file:
 ### RecyclerView
   - implementation 'androidx.recyclerview:recyclerview:1.1.0'
   
-    implementation 'com.google.android.material:material:1.0.0'
+  - implementation 'com.google.android.material:material:1.0.0'
     
 ### Room database components
   - implementation "androidx.room:room-runtime:$rootProject.roomVersion"
-    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
-    annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
-    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
-    androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+  - implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
+  - annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
+  - annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
+  - androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+  - androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
     
 ### Lifecycle components
   - implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-rc03'
   
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0-rc03'
+  - annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0-rc03'
     
 ### UI and testing
   - implementation "com.google.android.material:material:$rootProject.materialVersion"
 
 // Testing
-    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+  - androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
 
-    implementation 'com.squareup.picasso:picasso:2.71828'
+  - implementation 'com.squareup.picasso:picasso:2.71828'
     
 With these gradle dependencies in place we sould be able to run the application as intended.
 

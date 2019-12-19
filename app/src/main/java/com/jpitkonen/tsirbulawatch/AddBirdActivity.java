@@ -1,16 +1,16 @@
 package com.jpitkonen.tsirbulawatch;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.view.Display;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,15 +20,17 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.TypeConverters;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -87,7 +89,6 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
 
                     time_stamp.setText(formattedDate);
 
-
                     intent.putExtra(EXTRA_REPLY, birdName);
                     intent.putExtra(EXTRA_REPLY_RARITY, spinnerRarity);
                     intent.putExtra(EXTRA_REPLY_NOTES, birdNotes);
@@ -106,8 +107,6 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
         });
 
     }
-
-
 
     public void chooseImg() {
         Intent intent = new Intent();
@@ -131,12 +130,9 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
                         .centerCrop()
                         .fit()
                         .into(imageView);
-
             }
         }
-
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {

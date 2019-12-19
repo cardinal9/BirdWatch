@@ -21,4 +21,7 @@ public interface BirdDao {
 
     @Query("SELECT * FROM bird_table ORDER BY timestamp DESC")
     LiveData<List<Bird>> getBirds();
+
+    @Query("SELECT * FROM bird_table ORDER BY rarity ASC")
+    LiveData<List<Bird>> getBirdsByRarity();
 }

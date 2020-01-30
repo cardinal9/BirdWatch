@@ -26,6 +26,12 @@ public class BirdRepository {
         });
     }
 
+    public void delete() {
+        BirdRoomDatabase.databaseWriteExecutor.execute(() -> {
+            birdDao.deleteAll();
+        });
+    }
+
     public LiveData<List<Bird>> getAllBirds() {
         return allBirds;
     }

@@ -31,4 +31,8 @@ public class BirdViewModel extends AndroidViewModel {
         birdRepository.insert(bird);
     }
 
+    public void delete() {
+        birdRepository.delete();
+    }
+
 }

@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorRed</item>
+        <item name="colorPrimaryDark">@color/colorRed3</item>
+        <item name="colorAccent">@color/colorRed2</item>
+    </style>
+
     <style name="CardStyle" parent="CardView">
         <item name="cardCornerRadius">50dp</item>
         <item name="cardElevation">4dp</item>

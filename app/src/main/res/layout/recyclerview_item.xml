@@ -7,22 +7,26 @@
         android:id="@+id/cardViewId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/cardview_compat_inset_shadow"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="4dp"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:cropToPadding="false"
         android:padding="@dimen/cardview_default_radius"
         style="@style/CardView">
 
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
     <ImageView
             android:id="@+id/birdPicture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:src="@drawable/white_and_brown_bird_151511"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"/>
@@ -31,6 +35,10 @@
             android:id="@+id/birdNameId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/birdPicture"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/name_of_bird"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -39,6 +47,11 @@
             android:id="@+id/rarityId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/birdPicture"
+            android:layout_below="@+id/birdNameId"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/rarity"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -47,6 +60,11 @@
             android:id="@+id/notesId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/birdPicture"
+            android:layout_below="@+id/rarityId"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/notes"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -55,11 +73,16 @@
             android:id="@+id/timestamptextId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/birdPicture"
+            android:layout_below="@+id/notesId"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/timestamp"
             android:textSize="30sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 

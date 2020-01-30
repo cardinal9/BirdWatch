@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/settingsId"
+        android:orderInCategory="100"
+        android:title="Settings"
+        android:icon="@drawable/ic_delete_black_24dp"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/settingsFragmentId"
+        android:orderInCategory="200"
+        android:title="Sets"
+        android:icon="@drawable/ic_settings_black_24dp"
+        app:showAsAction="always" />
+
+</menu>

@@ -46,6 +46,8 @@ public class AddBirdActivity extends AppCompatActivity implements AdapterView.On
     private Button saveButton, uploadButton;
     private ImageView imageView;
 
+    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

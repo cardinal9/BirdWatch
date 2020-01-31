@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="nightmodeGategory"
+        android:title="Nightmode">
 
     <SwitchPreference
-        app:key="nightmode"
-        app:title="Enable nightmode" />
+        android:key="nightmode"
+        android:title="Nightmode"
+        android:defaultValue="false"
+        android:summaryOn="Enabled"
+        android:summaryOff="Disabled"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="Theme"
+        android:title="Color">
+
+        <ListPreference
+            android:key="themeColor"
+            android:title="Application Theme"
+            android:defaultValue="1"
+            android:entries="@array/colorThemeArray"
+            android:entryValues="@array/colorThemeValue"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

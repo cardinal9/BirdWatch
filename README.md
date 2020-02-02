@@ -1,4 +1,4 @@
-# TsirbulaWatcher
+# BirdWatch
 
 ## Description
 Very simple native Android application for recording bird sightings on and offline.
@@ -29,7 +29,7 @@ User is able to record new observations about birds they see. New observation wi
 ## For developers
 
 Clone the project:
-  git clone https://github.com/cardinal9/TsirbulaWatcher.git
+  git clone https://github.com/cardinal9/BirdWatch.git
   
   - Open the project with Android Studio(preferred).
   - Run 'app' either with emulator or real device connected.

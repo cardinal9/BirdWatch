@@ -6,25 +6,12 @@
         android:key="nightmodeGategory"
         android:title="Nightmode">
 
-    <SwitchPreference
-        android:key="nightmode"
+    <SwitchPreferenceCompat
+        android:key="nightmode_switch"
         android:title="Nightmode"
         android:defaultValue="false"
         android:summaryOn="Enabled"
         android:summaryOff="Disabled"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="Theme"
-        android:title="Color">
-
-        <ListPreference
-            android:key="themeColor"
-            android:title="Application Theme"
-            android:defaultValue="1"
-            android:entries="@array/colorThemeArray"
-            android:entryValues="@array/colorThemeValue"/>
 
     </PreferenceCategory>
 
